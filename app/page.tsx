@@ -57,7 +57,7 @@ export default function Home() {
           </div>
           
           {/* Tagline */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-20 max-w-2xl">
             Remember everything. Effortlessly.
           </p>
           
@@ -76,19 +76,31 @@ export default function Home() {
         </div>
         
         {/* Scroll indicator - fades out on scroll */}
-        <div 
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce transition-opacity duration-500 ${
-            scrolled ? "opacity-0" : "opacity-100"
+        <button 
+          onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+          className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${
+            scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
-          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-muted-foreground/50 rounded-full" />
+          <div className="flex flex-col items-center gap-2 text-muted-foreground/60 hover:text-muted-foreground transition-colors">
+            <span className="text-sm">Learn more</span>
+            <svg 
+              className="w-5 h-5" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2"
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
           </div>
-        </div>
+        </button>
       </section>
 
       {/* Section 1: Timeline - Full width browser */}
-      <section className="py-32 px-6">
+      <section id="features" className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Left-aligned header */}
           <div className="mb-12 max-w-2xl">
