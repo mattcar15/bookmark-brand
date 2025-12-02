@@ -1,22 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-function BookmarkIcon({ className, filled = false }: { className?: string; filled?: boolean }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill={filled ? "currentColor" : "none"}
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-    </svg>
-  );
-}
+import Image from "next/image";
+import bookmarkLogo from "./bookmark_logo.png";
 
 function AppleIcon({ className }: { className?: string }) {
   return (
@@ -39,6 +25,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Top Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <div className="flex items-center gap-2">
+          <Image src={bookmarkLogo} alt="Bookmark" className="h-6 w-auto" />
+          <span className="text-xl font-semibold text-foreground">Bookmark</span>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
         {/* Background gradient */}
@@ -48,23 +42,23 @@ export default function Home() {
         
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl">
-          {/* Logo + Title */}
-          <div className="flex items-center gap-4 mb-8">
-            <BookmarkIcon className="w-14 h-14 text-primary" filled />
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
-              Bookmark
-            </h1>
-          </div>
+          {/* Main Headline */}
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-8">
+            Remember everything.{" "}
+            <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+              Effortlessly.
+            </span>
+          </h1>
           
-          {/* Tagline */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-20 max-w-2xl">
-            Remember everything. Effortlessly.
+          {/* Subtitle */}
+          <p className="text-lg md:text-xl text-muted-foreground mb-20 max-w-2xl">
+            Bookmark keeps track of what you do on your computer and builds a searchable timeline so you never lose track of where you left off.
           </p>
           
           {/* CTA Button */}
           <a
             href="#"
-            className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
+            className="flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
           >
             <AppleIcon className="w-5 h-5" />
             Download for macOS
@@ -239,13 +233,13 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             Ready to remember everything?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg text-muted-foreground mb-16">
             Download Bookmark and start building your personal timeline today.
           </p>
           
           <a
             href="#"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
+            className="inline-flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
           >
             <AppleIcon className="w-5 h-5" />
             Download for macOS
@@ -258,7 +252,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-2">
-              <BookmarkIcon className="w-5 h-5 text-primary" filled />
+              <Image src={bookmarkLogo} alt="Bookmark" className="h-5 w-auto" />
               <span className="font-medium">Bookmark</span>
             </div>
             <p className="text-sm text-muted-foreground">
