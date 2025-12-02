@@ -8,7 +8,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bookmark — Remember Everything",
+  title: "Bookmark",
   description: "Build memories from the things you do on your computer. Explore your personal timeline and never forget the important moments.",
 };
 
