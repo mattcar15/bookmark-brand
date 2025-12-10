@@ -39,8 +39,8 @@ export default function Home() {
       setTimeout(() => {
         setQueryIndex((prev) => (prev + 1) % searchQueries.length);
         setIsAnimating(false);
-      }, 300);
-    }, 6000);
+      }, 500);
+    }, 7000);
     return () => clearInterval(interval);
   }, []);
 
