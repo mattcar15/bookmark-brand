@@ -88,7 +88,7 @@ export default function Home() {
               </a>
               
               <p className="mt-4 text-sm text-muted-foreground">
-                Beta · macOS 14+
+                Beta · macOS 14+ · Apple Silicon
               </p>
             </div>
             
