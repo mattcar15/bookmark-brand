@@ -80,7 +80,7 @@ export default function Home() {
               
               {/* CTA Button */}
               <a
-                href="#"
+                href="/bookmark.dmg"
                 className="flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-all duration-300 ease-out hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(255,107,0,0.35),0_4px_12px_rgba(0,0,0,0.15)] hover:brightness-105"
               >
                 <AppleIcon className="w-5 h-5" />
@@ -351,7 +351,7 @@ export default function Home() {
           </p>
           
           <a
-            href="#"
+            href="/bookmark.dmg"
             className="inline-flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-all duration-300 ease-out hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(255,107,0,0.35),0_4px_12px_rgba(0,0,0,0.15)] hover:brightness-105"
           >
             <AppleIcon className="w-5 h-5" />
