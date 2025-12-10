@@ -12,8 +12,17 @@ function AppleIcon({ className }: { className?: string }) {
   );
 }
 
+const searchQueries = [
+  "What was that API I was reading about?",
+  "Where did I see that design inspiration?",
+  "Find the email about the budget",
+  "Show me yesterday's meeting notes",
+];
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [queryIndex, setQueryIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +30,18 @@ export default function Home() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Rotate search queries
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setQueryIndex((prev) => (prev + 1) % searchQueries.length);
+        setIsAnimating(false);
+      }, 300);
+    }, 6000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -34,39 +55,131 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+      <section className="relative min-h-screen flex items-center px-6 overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center text-center max-w-4xl">
-          {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-8">
-            Remember everything.{" "}
-            <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
-              Effortlessly.
-            </span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-20 max-w-2xl">
-            Bookmark keeps track of what you do on your computer and builds a searchable timeline so you never lose track of where you left off.
-          </p>
-          
-          {/* CTA Button */}
-          <a
-            href="#"
-            className="flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
-          >
-            <AppleIcon className="w-5 h-5" />
-            Download for macOS
-          </a>
-          
-          <p className="mt-4 text-sm text-muted-foreground">
-            Beta · macOS 14+
-          </p>
+        <div className="relative z-10 max-w-7xl mx-auto w-full pt-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left side - Text */}
+            <div className="flex flex-col items-start text-left">
+              {/* Main Headline */}
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-8">
+                Everything you've seen. <br />
+                <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+                Instantly findable.
+                </span>
+              </h1>
+              
+              {/* Subtitle */}
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl">
+              Bookmark builds a searchable memory of your computer, so you can jump back to any moment in seconds.
+              </p>
+              
+              {/* CTA Button */}
+              <a
+                href="#"
+                className="flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
+              >
+                <AppleIcon className="w-5 h-5" />
+                Download for macOS
+              </a>
+              
+              <p className="mt-4 text-sm text-muted-foreground">
+                Beta · macOS 14+
+              </p>
+            </div>
+            
+            {/* Right side - macOS Window Mockup */}
+            <div className="relative hidden lg:block">
+              {/* Soft orange glow behind the card */}
+              <div className="absolute -inset-8 bg-gradient-to-br from-primary/30 via-primary/20 to-primary-light/20 rounded-3xl blur-2xl opacity-60" />
+              
+              {/* macOS Window */}
+              <div className="relative bg-card border border-border rounded-2xl overflow-hidden shadow-2xl">
+                {/* Window title bar */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-muted/50 border-b border-border">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  <span className="ml-4 text-sm text-muted-foreground">Bookmark</span>
+                </div>
+                
+                {/* Window content */}
+                <div className="p-5 bg-gradient-to-br from-background via-muted/10 to-background">
+                  {/* Search bar */}
+                  <div className="flex items-center gap-3 px-4 py-3 bg-muted/40 border border-border rounded-xl mb-5">
+                    <svg 
+                      className="w-5 h-5 text-muted-foreground shrink-0" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2"
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35" />
+                    </svg>
+                    <span 
+                      className={`text-sm text-muted-foreground transition-opacity duration-300 ${
+                        isAnimating ? "opacity-0" : "opacity-100"
+                      }`}
+                    >
+                      {searchQueries[queryIndex]}
+                    </span>
+                  </div>
+                  
+                  {/* Memory cards */}
+                  <div className="space-y-3 overflow-hidden">
+                    {/* Memory card 1 */}
+                    <div 
+                      className={`flex items-center gap-4 p-4 bg-muted/30 border border-border/50 rounded-xl backdrop-blur-sm transition-all duration-500 ${
+                        isAnimating ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                      }`}
+                      style={{ transitionDelay: isAnimating ? "0ms" : "100ms" }}
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <div className="h-2.5 bg-foreground/20 rounded w-4/5" />
+                        <div className="h-2 bg-muted-foreground/20 rounded w-3/5" />
+                      </div>
+                    </div>
+                    
+                    {/* Memory card 2 */}
+                    <div 
+                      className={`flex items-center gap-4 p-4 bg-muted/30 border border-border/50 rounded-xl backdrop-blur-sm transition-all duration-500 ${
+                        isAnimating ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                      }`}
+                      style={{ transitionDelay: isAnimating ? "0ms" : "200ms" }}
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-lg shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <div className="h-2.5 bg-foreground/20 rounded w-3/4" />
+                        <div className="h-2 bg-muted-foreground/20 rounded w-1/2" />
+                      </div>
+                    </div>
+                    
+                    {/* Memory card 3 */}
+                    <div 
+                      className={`flex items-center gap-4 p-4 bg-muted/30 border border-border/50 rounded-xl backdrop-blur-sm transition-all duration-500 ${
+                        isAnimating ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                      }`}
+                      style={{ transitionDelay: isAnimating ? "0ms" : "300ms" }}
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary/15 to-secondary/15 rounded-lg shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <div className="h-2.5 bg-foreground/20 rounded w-2/3" />
+                        <div className="h-2 bg-muted-foreground/20 rounded w-2/5" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
         {/* Scroll indicator - fades out on scroll */}
