@@ -61,7 +61,7 @@ export default function Home() {
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full pt-24">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left side - Text */}
             <div className="flex flex-col items-start text-left">
@@ -81,7 +81,7 @@ export default function Home() {
               {/* CTA Button */}
               <a
                 href="#"
-                className="flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
+                className="flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-all duration-300 ease-out hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(255,107,0,0.35),0_4px_12px_rgba(0,0,0,0.15)] hover:brightness-105"
               >
                 <AppleIcon className="w-5 h-5" />
                 Download for macOS
@@ -95,7 +95,7 @@ export default function Home() {
             {/* Right side - macOS Window Mockup */}
             <div className="relative hidden lg:block">
               {/* Soft orange glow behind the card */}
-              <div className="absolute -inset-8 bg-gradient-to-br from-primary/30 via-primary/20 to-primary-light/20 rounded-3xl blur-2xl opacity-60" />
+              <div className="absolute -inset-0 bg-gradient-to-br from-primary/30 via-primary/20 to-primary-light/20 rounded-3xl blur-2xl opacity-40" />
               
               {/* macOS Window */}
               <div className="relative bg-card border border-border rounded-2xl overflow-hidden shadow-2xl">
@@ -352,7 +352,7 @@ export default function Home() {
           
           <a
             href="#"
-            className="inline-flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-colors hover:bg-primary/80"
+            className="inline-flex items-center gap-3 px-5 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg transition-all duration-300 ease-out hover:scale-[1.05] hover:shadow-[0_12px_40px_rgba(255,107,0,0.35),0_4px_12px_rgba(0,0,0,0.15)] hover:brightness-105"
           >
             <AppleIcon className="w-5 h-5" />
             Download for macOS
